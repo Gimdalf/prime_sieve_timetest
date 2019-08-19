@@ -1,5 +1,4 @@
 from time import time
-import numpy as np
 import gc
 
 from math import ceil, sqrt
@@ -7,7 +6,7 @@ def timed_esieve(n):
 	tyms = []
 	tymin = time() 
 
-	prime_list = [True if i%2 ==1 else False1 for i in range(n-2)]
+	prime_list = [True if i%2 ==1 else False for i in range(n-2)]
 	i = 1
 
 	tyms.append(time() - tymin)
@@ -95,15 +94,15 @@ def timed_ssieve(inp):
 	tyms.append(time() - tymin)
 	return tyms
 
-for j in range(1,6):
+for j in range(2,6):
 	test_runtime = time()
 	erast_times = open("erast{}.txt".format(j), "w")
 	sunda_times = open("sunda{}.txt".format(j), "w")
 	atkin_times = open("atkin{}.txt".format(j), "w")
-	rang = [i**2 for i in range(3, 2000)]
+	rang = [i**2 for i in range(3, 1000)]
 	for i in rang:
-		tyms = []
-		tymin = time()
+		if sqrt(i) % 200 == 0:
+			print('Current iteration: {}'.format(str(sqrt(i))))
 		for alg, file in ((timed_esieve, erast_times), (timed_ssieve, sunda_times), (timed_atkin, atkin_times)):
 			timinz = alg(i)
 			file.write("\n {} ".format(i)+" ".join(list(map(lambda x: str(x), timinz))))
